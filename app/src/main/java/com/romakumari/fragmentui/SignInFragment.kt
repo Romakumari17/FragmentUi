@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.romakumari.fragmentui.databinding.FragmentFitnessBinding
+import com.romakumari.fragmentui.databinding.FragmentSignInBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,8 +21,11 @@ private const val ARG_PARAM2 = "param2"
  */
 class SignInFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    lateinit var fragmentSignInBinding: FragmentSignInBinding
+    lateinit var mainActivity: MainActivity
     private var param1: String? = null
     private var param2: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +38,35 @@ class SignInFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
+
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+       fragmentSignInBinding = FragmentSignInBinding.inflate(inflater, container, false)
+        return fragmentSignInBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fragmentSignInBinding.tvsignup.setOnClickListener{
+            findNavController().navigate(R.id.signUpFragment)
+        }
+        fragmentSignInBinding.hbtnsignin.setOnClickListener {
+            if (fragmentSignInBinding.etemail.text.toString().isNullOrEmpty()) {
+                fragmentSignInBinding.etemail.error = "enter Your Email "
+            } else if (fragmentSignInBinding.etpassword.text.toString().isNullOrEmpty()) {
+                fragmentSignInBinding.etpassword.error = "enter Your password "
+            }else {
+                val bundle = Bundle()
+                bundle.putString("email",fragmentSignInBinding.etemail.text.toString())
+                findNavController().navigate(R.id.homeFragment,bundle)
+            }
+
+
+
+        }
+
     }
 
     companion object {

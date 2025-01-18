@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.romakumari.fragmentui.databinding.FragmentSignInBinding
+import com.romakumari.fragmentui.databinding.FragmentSignUpBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,11 +22,14 @@ private const val ARG_PARAM2 = "param2"
  */
 class SignUpFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    lateinit var fragmentSignUpBinding: FragmentSignUpBinding
+    lateinit var mainActivity:MainActivity
     private var param1: String? = null
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mainActivity = activity as MainActivity
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -32,9 +39,38 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+        fragmentSignUpBinding= FragmentSignUpBinding.inflate(inflater, container, false)
+        return fragmentSignUpBinding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fragmentSignUpBinding.tvsignIn.setOnClickListener {
+            findNavController().navigate(R.id.signInFragment)
+        }
+        fragmentSignUpBinding.Csignupbtn.setOnClickListener {
+            if (fragmentSignUpBinding.etname.text.toString().isNullOrEmpty()) {
+                fragmentSignUpBinding.etname.error = ("name")
+            } else if (fragmentSignUpBinding.etemail.text.toString().isNullOrEmpty()) {
+                fragmentSignUpBinding.etemail.error = "enter Your Email "
+            } else if (fragmentSignUpBinding.etpassword.text.toString().isNullOrEmpty()) {
+                fragmentSignUpBinding.etpassword.error = "enter Your password "
+            } else if (fragmentSignUpBinding.etconfirmpassword.text.toString().isNullOrEmpty()) {
+                fragmentSignUpBinding.etconfirmpassword.error = "enter Your password again "
+            }  else if (fragmentSignUpBinding.etpassword.text.toString() != fragmentSignUpBinding.etconfirmpassword.text.toString()) {
+                Toast.makeText(mainActivity, "Passwords are not matched", Toast.LENGTH_SHORT).show()
+            } else {
+                val bundle = Bundle()
+                bundle.putString("name",  fragmentSignUpBinding.etname.text.toString())
+                bundle.putString("email",fragmentSignUpBinding.etemail.text.toString())
+                findNavController().navigate(R.id.homeFragment,bundle)
+            }
+
+        }
+
     }
 
     companion object {

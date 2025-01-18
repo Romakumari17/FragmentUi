@@ -15,16 +15,16 @@
     android:layout_marginTop="20dp"
     android:text="Create Your"
     android:textColor="@color/white"
-    android:textSize="40dp" />
+    android:textSize="60dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Account"
         android:textColor="@color/white"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         android:layout_alignParentTop="@id/tvCreate"
         android:layout_alignParentStart="true"
-        android:textSize="40dp"
+        android:textSize="60dp"
         />
 
     <androidx.cardview.widget.CardView
@@ -53,6 +53,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/etname"
                 android:inputType="textEmailAddress"
                 android:drawableEnd="@drawable/baseline_check_24"
                 />
@@ -72,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:id="@+id/etemail"
                 android:drawableEnd="@drawable/baseline_check_24"
                 />
             <View
@@ -89,7 +91,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
+                android:id="@+id/etpassword"
                 android:drawableEnd="@drawable/baseline_remove_red_eye_24"
                 />
             <View
@@ -107,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:id="@+id/etpassword"
+                android:id="@+id/etconfirmpassword"
                 android:drawableEnd="@drawable/baseline_remove_red_eye_24"
                 />
 
@@ -115,7 +118,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:id="@+id/signupbtn"
+                android:id="@+id/Csignupbtn"
                 android:text="Sign Up"
                 android:textColor="@color/white"
                 android:background="@drawable/btndraw"
@@ -137,7 +140,7 @@
                     android:text="Don't have account?"
                     android:layout_marginTop="10dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignBottom="@id/btnsignIn"
+                    android:layout_alignBottom="@id/tvsignIn"
                     android:alpha=".7"
                     android:textSize="15dp"
                     android:layout_marginBottom="40dp"
@@ -149,12 +152,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sign In"
-                    android:id="@+id/btnsignIn"
+                    android:id="@+id/tvsignIn"
                     android:layout_alignParentBottom="true"
                     android:textColor="@color/black"
                     android:textSize="25dp"
                     android:gravity="end"
                     />
+
 
             </RelativeLayout>
 

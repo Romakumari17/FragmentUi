@@ -5,12 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
-import com.romakumari.fragmentui.databinding.FragmentFitnessBinding
+import com.romakumari.fragmentui.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,20 +14,26 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [FitnessFragment.newInstance] factory method to
+ * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FitnessFragment : Fragment() {
+class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    lateinit var binding: FragmentHomeBinding
+    lateinit var mainActivity: MainActivity
+    var  name = ""
+    var email = ""
+//    var getEmail = ""
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var fitnessBinding: FragmentFitnessBinding
-    lateinit var mainActivity: MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivity = activity as MainActivity
         arguments?.let {
+            name = it.getString("name","")
+            email = it.getString("email", "")
+//            getEmail = it.getString("getEmail","")
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
@@ -43,21 +44,14 @@ class FitnessFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fitnessBinding = FragmentFitnessBinding.inflate(inflater, container, false)
-        return fitnessBinding.root
-
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+        return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        fitnessBinding.fbtnsignup.setOnClickListener {
-            findNavController().navigate(R.id.action_fitnessFragment_to_signUpFragment)
-        }
-        fitnessBinding.fbtnsignin.setOnClickListener {
-
-            findNavController().navigate(R.id.action_fitnessFragment_to_signInFragment)
-        }
+        binding.tvname.setText(name)
+        binding.tvemail.setText(email)
+//        binding.tvemail.setText(getEmail)
 
     }
 
@@ -68,19 +62,16 @@ class FitnessFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment FitnessFragment.
+         * @return A new instance of fragment HomeFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            FitnessFragment().apply {
+            HomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
-
-
-                }
             }
-
     }
+}

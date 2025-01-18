@@ -12,19 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:text="Hello"
         android:textColor="@color/white"
-        android:textSize="50dp" />
+        android:textSize="60dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In!"
         android:textColor="@color/white"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="100dp"
         android:layout_alignParentTop="@id/tvhello"
         android:layout_alignParentStart="true"
-        android:textSize="50dp"
+        android:textSize="60dp"
         />
 
     <androidx.cardview.widget.CardView
@@ -39,7 +39,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical"
             android:padding="28dp">
 
@@ -55,6 +54,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/etemail"
                 android:inputType="textEmailAddress"
                 android:drawableEnd="@drawable/baseline_check_24"
                 />
@@ -89,7 +89,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:id="@+id/singinbtn"
+                android:id="@+id/hbtnsignin"
                 android:text="Sign In"
                 android:textColor="@color/white"
                 android:background="@drawable/btndraw"
@@ -107,7 +107,7 @@
                     android:text="Don't have account?"
                     android:layout_marginTop="10dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignBottom="@id/btnsignup"
+                    android:layout_alignBottom="@id/tvsignup"
                     android:alpha=".7"
                     android:textSize="15dp"
                     android:layout_marginBottom="40dp"
@@ -119,7 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sign Up"
-                    android:id="@+id/btnsignup"
+                    android:id="@+id/tvsignup"
                     android:layout_alignParentBottom="true"
                     android:textColor="@color/black"
                     android:textSize="25dp"
